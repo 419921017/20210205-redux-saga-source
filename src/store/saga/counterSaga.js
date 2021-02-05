@@ -1,4 +1,6 @@
-import { put, take } from 'redux-saga/effects';
+// import { put, take } from 'redux-saga/effects';
+// import { put, take } from './../../redux-saga/effect';
+import { put, take } from './../../redux-saga/effect';
 import * as actionTypes from './../actionTypes';
 
 function* counterSaga() {
