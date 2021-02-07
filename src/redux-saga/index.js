@@ -52,9 +52,12 @@ function createSagaMiddle() {
                 break;
               case 'FORK':
                 // 如果是fork, 新开启一个子进程执行, 自己的saga会继续执行
-                let newTask = effect.task();
-                run(newTask);
-                next(newTask);
+                if (typeof effect.task === 'function') {
+                  let newTask = effect.task();
+                  run(newTask);
+                  next(newTask);
+                }
+
                 break;
               // 接受promise
               case 'CALL':
@@ -71,7 +74,7 @@ function createSagaMiddle() {
                 break;
               case 'CANCEL':
                 let task = effect.task;
-                task.return('done')
+                task.return('done');
                 break;
               default:
                 break;
